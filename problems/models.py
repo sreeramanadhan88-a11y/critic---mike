@@ -12,9 +12,9 @@ class Category(models.Model):
 class Problem(models.Model):
 
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
+        ('problem_raised', 'Problem Raised'),
         ('assigned', 'Assigned'),
-        ('in_progress', 'In Progress'),
+        ('problem_initiated', 'Problem Initiated'),
         ('completed', 'Completed'),
         ('rejected', 'Rejected'),
         ('resolved', 'Resolved'),
@@ -45,7 +45,7 @@ class Problem(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='pending'
+        default='problem_raised'
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

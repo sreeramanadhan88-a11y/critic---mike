@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <h1>Critic Mike - Admin Dashboard</h1>
+
+    <h2>Welcome, {{ request.user.username }}</h2>
+
+    
+    {% comment %} <h3>Problem Management</h3> {% endcomment %}
+
+    {% comment %} <ul>
+        <li>View Problems</li>
+        <li>Verify Problems</li>
+        <li>Assign Departments</li>
+        <li>Monitor Problem Status</li>
+    </ul>
+
+    <h3>Management</h3>
+
+    <ul>
+        <li>Manage Users</li>
+        <li>Manage Departments</li>
+        <li>Manage Categories</li>
+    </ul> {% endcomment %}
+
+    <hr>
+
+    <h3>Submitted Problems</h3>
+
+    {% if problems %}
+
+        {% for problem in problems %}
+
+            <div>
+
+                <h4>
+    <a href="{% url 'problem_detail' problem.id %}">
+        {{ problem.title }}
+    </a>
+</h4>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ problem.category.name }}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ problem.location }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ problem.get_status_display }}
+                </p>
+
+                <p>
+                    <strong>Submitted by:</strong>
+                    {{ problem.user.username }}
+                </p>
+
+                <hr>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No problems have been submitted yet.</p>
+
+    {% endif %}
+
+</body>
+</html>

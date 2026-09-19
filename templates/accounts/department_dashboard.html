@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Department Dashboard</title>
+</head>
+<body>
+
+<h1>Department Dashboard</h1>
+
+<h2>
+    Department:
+    {{ request.user.department.name }}
+</h2>
+
+<hr>
+
+<h3>Assigned Problems</h3>
+
+{% if assignments %}
+
+    {% for assignment in assignments %}
+
+        <div>
+
+            <h4>
+                {{ assignment.problem.title }}
+            </h4>
+
+            <p>
+                <strong>Category:</strong>
+                {{ assignment.problem.category.name }}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ assignment.problem.location }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ assignment.problem.get_status_display }}
+            </p>
+
+            <p>
+                <strong>Department:</strong>
+                {{ assignment.department.name }}
+            </p>
+
+            <p>
+                <strong>Assigned On:</strong>
+                {{ assignment.assigned_at }}
+            </p>
+
+            <a href="{% url 'take_problem' assignment.id %}">
+                Take Problem
+            </a>
+
+            <hr>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No problems have been assigned to your department.</p>
+
+{% endif %}
+
+
+</body>
+</html>

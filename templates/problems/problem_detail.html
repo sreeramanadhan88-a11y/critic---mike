@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Problem Details</title>
+</head>
+<body>
+
+    <h1>Problem Details</h1>
+
+    <hr>
+
+    <h2>{{ problem.title }}</h2>
+
+    <p>
+        <strong>Category:</strong>
+        {{ problem.category.name }}
+    </p>
+
+    <p>
+        <strong>Description:</strong>
+        {{ problem.description }}
+    </p>
+
+    <p>
+        <strong>Location:</strong>
+        {{ problem.location }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        {{ problem.get_status_display }}
+    </p>
+
+    <p>
+        <strong>Submitted by:</strong>
+        {{ problem.user.username }}
+    </p>
+
+    <p>
+        <strong>Submitted on:</strong>
+        {{ problem.created_at }}
+    </p>
+
+    {% if problem.photo %}
+
+        <p>
+            <strong>Photo:</strong>
+        </p>
+
+        <img
+            src="{{ problem.photo.url }}"
+            alt="Problem Photo"
+            width="400"
+        >
+
+    {% endif %}
+
+    <hr>
+    
+
+<h3>Assign Department</h3>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Assign Department
+    </button>
+
+</form>
+
+    <a href="{% url 'admin_dashboard' %}">
+        Back to Admin Dashboard
+    </a>
+
+</body>
+</html>

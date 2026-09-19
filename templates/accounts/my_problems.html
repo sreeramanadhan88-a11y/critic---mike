@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Problems</title>
+</head>
+<body>
+
+    <h1>My Problems</h1>
+
+    <a href="{% url 'raise_problem' %}">
+        Raise Another Problem
+    </a>
+
+    <hr>
+
+    {% if problems %}
+
+        {% for problem in problems %}
+
+            <div>
+
+                <h2>{{ problem.title }}</h2>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ problem.category.name }}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ problem.location }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ problem.get_status_display }}
+                </p>
+
+                <hr>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>You have not submitted any problems yet.</p>
+
+    {% endif %}
+
+</body>
+</html>
